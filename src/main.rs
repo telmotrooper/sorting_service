@@ -26,10 +26,17 @@ async fn home() -> impl Responder {
 
 #[post("/book")]
 async fn read_book(book: web::Json<Book>) -> Result<String> {
-    let title = (book.title).as_ref().unwrap();
-    Ok(format!("The book is {:?}, by {:?}", title, book.author))
+    if book.title.is_none() || book.author.is_none() {
+        return Ok(format!("Invalid book"));
+    }
+    let title = book.title.as_ref().unwrap();
+    let author = book.author.as_ref().unwrap();
+    Ok(format!("The book is {:?}, written by {:?}.", title, author))
 }
 
+//fn get_string(string: Option<String>) -> &String {
+//    string.as_ref().unwrap();
+//}
 
 #[derive(Deserialize)]
 struct Book {
