@@ -1,5 +1,7 @@
 #![allow(dead_code)]
 
+// Top level module declarations
+mod models;
 mod routes;
 
 use actix_web::{App, HttpServer};
