@@ -11,10 +11,11 @@ use actix_web::{App, HttpServer};
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
+    let address = "127.0.0.1:8000";
+
     std::env::set_var("RUST_LOG", "actix_web=info");
     env_logger::init();
 
-    let address = "127.0.0.1:8000";
     println!("Running web server on http://{}\n", address);
     HttpServer::new(|| {
         App::new()
