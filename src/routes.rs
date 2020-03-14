@@ -9,12 +9,14 @@ pub async fn home() -> impl Responder {
 }
 
 #[post("/books")]
-pub async fn read_book(input: Json<models::SortingInput>) -> Result<String> {
+pub async fn sort_books(input: Json<models::SortingInput>) -> Result<String> {
     for book in input.books.iter() {
         if book.title.is_none() || book.author.is_none() {
             return Err(error::ErrorBadRequest("Invalid book provided."));
         }
     }
+
+    let groups: Vec<&str> = input.order_by.split(",").collect();
 
     let title = input.books[0].title.as_ref().unwrap();
     let author = input.books[0].author.as_ref().unwrap();
