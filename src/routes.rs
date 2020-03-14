@@ -18,6 +18,11 @@ pub async fn sort_books(input: Json<models::SortingInput>) -> Result<String> {
 
     let groups: Vec<&str> = input.order_by.split(",").collect();
 
+    let x: Vec<Vec<&str>> = groups
+        .iter()
+        .map(|group| group.split(" ").filter(|x| *x != "").collect())
+        .collect();
+
     let title = input.books[0].title.as_ref().unwrap();
     let author = input.books[0].author.as_ref().unwrap();
     Ok(format!("The book is {:?}, written by {:?}.", title, author))
