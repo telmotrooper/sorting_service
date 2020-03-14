@@ -1,6 +1,6 @@
 #![allow(dead_code, unused_imports)]
 
-use actix_web::middleware::Logger;
+use actix_web::middleware::{Compress, Logger};
 use actix_web::{App, HttpServer};
 use env_logger;
 
@@ -18,6 +18,7 @@ async fn main() -> std::io::Result<()> {
     println!("Running web server on http://{}\n", address);
     HttpServer::new(|| {
         App::new()
+            .wrap(Compress::default())
             .wrap(Logger::default())
             .service(routes::home)
             .service(routes::read_book)
