@@ -4,9 +4,9 @@ use actix_web::middleware::{Compress, Logger};
 use actix_web::{App, HttpServer};
 use env_logger;
 
-// Top level module declarations
 mod models;
 mod routes;
+mod utils;
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
