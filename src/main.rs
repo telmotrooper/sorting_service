@@ -1,13 +1,12 @@
 #![allow(dead_code, unused_imports)]
 
-extern crate env_logger;
+use actix_web::middleware::Logger;
+use actix_web::{App, HttpServer};
+use env_logger;
 
 // Top level module declarations
 mod models;
 mod routes;
-
-use actix_web::middleware::Logger;
-use actix_web::{App, HttpServer};
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
