@@ -1,0 +1,41 @@
+{
+  "order_by": "title desc, author asc",
+  "books": [
+    {
+      "title": "Classic Shell Scripting",
+      "subtitle": "Automate Your Unix Tasks",
+      "author": "Arnold Robbins; Nelson H. F. Beebe",
+      "edition_year": "2005"
+    },
+    {
+      "title": "grep Pocket Reference",
+      "subtitle": "The Basics for an Essential Unix Content-Location Utility",
+      "author": "John Bambenek. Agnieszka Klus",
+      "edition_year": "2009"
+    },
+    {
+      "title": "Introducing Regular Expressions",
+      "subtitle": "Unraveling Regular Expressions, Step-by-Step",
+      "author": "Michael Fitzgerald",
+      "edition_year": "2012"
+    },
+    {
+      "title": "Learning GNU Emacs, 3rd Edition",
+      "subtitle": "A Guide to the World's Most Extensible, Customizable Editor",
+      "author": "Debra Cameron; James Elliott; Marc Loy; Eric Raymond; Bill Rosenblatt",
+      "edition_year": "2005"
+    },
+    {
+      "title": "Linux Device Drivers, 3rd Edition",
+      "subtitle": "Where the Kernel Meets the Hardware",
+      "author": "Jonathan Corbet; Alessandro Rubini; Greg Kroah-Hartman",
+      "edition_year": "2005"
+    },
+    {
+      "title": "Unix Power Tools, 3rd Edition",
+      "subtitle": "",
+      "author": "Shelley Powers. Jerry Peek; Tim O'Reilly; Mike Loukides",
+      "edition_year": "2003"
+    }
+  ]
+}
