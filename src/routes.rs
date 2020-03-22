@@ -18,7 +18,9 @@ pub async fn sort_books(mut input: Json<SortingInput>) -> impl Responder {
     }
 
     // e.g. ["title desc", " author asc"]
-    let rules: Vec<&str> = input.order_by.split(",").collect();
+    let mut rules: Vec<&str> = input.order_by.split(",").collect();
+
+    &rules.reverse(); // Invert order for easier multi-level sorting
 
     // e.g. [["title", "desc"], ["author", "asc"]]
     let processed_rules: Vec<Vec<&str>> = rules
