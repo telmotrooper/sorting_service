@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize)]
 pub struct SortingInput {
@@ -6,7 +6,7 @@ pub struct SortingInput {
     pub books: Vec<Book>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Book {
     pub title: Option<String>,
     pub subtitle: Option<String>,

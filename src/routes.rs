@@ -10,7 +10,7 @@ pub async fn home() -> impl Responder {
 }
 
 #[post("/books")]
-pub async fn sort_books(input: Json<SortingInput>) -> impl Responder {
+pub async fn sort_books(mut input: Json<SortingInput>) -> impl Responder {
     for book in input.books.iter() {
         if book.title.is_none() || book.author.is_none() {
             return Err(error::ErrorBadRequest("Invalid book provided."));
@@ -39,6 +39,9 @@ pub async fn sort_books(input: Json<SortingInput>) -> impl Responder {
             }
         }
     }
+
+    // TODO: Remove this (only here for testing)
+    &input.books.sort();
 
     // let title = input.books[0].title.as_ref().unwrap();
     // let author = input.books[0].author.as_ref().unwrap();
