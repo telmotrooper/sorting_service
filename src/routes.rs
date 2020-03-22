@@ -1,4 +1,4 @@
-use crate::models::SortingInput;
+use crate::models::{Book, SortingInput};
 use crate::utils::get_from_book;
 
 use actix_web::web::Json;
@@ -10,7 +10,7 @@ pub async fn home() -> impl Responder {
 }
 
 #[post("/books")]
-pub async fn sort_books(input: Json<SortingInput>) -> Result<String> {
+pub async fn sort_books(input: Json<SortingInput>) -> impl Responder {
     for book in input.books.iter() {
         if book.title.is_none() || book.author.is_none() {
             return Err(error::ErrorBadRequest("Invalid book provided."));
@@ -40,7 +40,8 @@ pub async fn sort_books(input: Json<SortingInput>) -> Result<String> {
         }
     }
 
-    let title = input.books[0].title.as_ref().unwrap();
-    let author = input.books[0].author.as_ref().unwrap();
-    Ok(format!("The book is {:?}, written by {:?}.", title, author))
+    // let title = input.books[0].title.as_ref().unwrap();
+    // let author = input.books[0].author.as_ref().unwrap();
+
+    HttpResponse::Ok().json(&input.books).await
 }
