@@ -1,12 +1,20 @@
 use crate::models::{Book, SortingInput};
-use crate::utils::get_from_book;
+use crate::utils::get_value;
 
 use actix_web::web::Json;
-use actix_web::{error, get, post, HttpResponse, Responder, Result};
+use actix_web::{error, get, post, HttpResponse, Responder, Result, HttpRequest};
+use serde_json::{Value};
 
 #[get("/")]
 pub async fn home() -> impl Responder {
     HttpResponse::Ok().body("Hello")
+}
+
+#[post("/test")]
+pub async fn test(mut input: Json<Value>) -> impl Responder {
+    let res = format!("{}", &input["order_by"]);
+
+    HttpResponse::Ok().body(res)
 }
 
 #[post("/books")]
@@ -20,7 +28,7 @@ pub async fn sort_books(mut input: Json<SortingInput>) -> impl Responder {
     // e.g. ["title desc", " author asc"]
     let mut rules: Vec<&str> = input.order_by.split(",").collect();
 
-    &rules.reverse(); // Invert order for easier multi-level sorting
+    &rules.reverse(); // Invert order for iterative multi-level sorting.
 
     // e.g. [["title", "desc"], ["author", "asc"]]
     let processed_rules: Vec<Vec<&str>> = rules
@@ -30,16 +38,19 @@ pub async fn sort_books(mut input: Json<SortingInput>) -> impl Responder {
 
     // TODO: multi-level sorting
 
-    for rule in processed_rules {
-        println!("[{},{}]", rule[0], rule[1]);
+    for (index, rule) in processed_rules.iter().enumerate() {
+        // println!("[{},{}]", rule[0], rule[1]);
 
-        for book in input.books.iter() {
-            let value = get_from_book(book, rule[0]);
+        // &input.books.sort_by(|a, b| b. });
 
-            if let Some(v) = value {
-                println!("{}", v);
-            }
-        }
+
+        // for book in input.books.iter() {
+        //     let value = get_value(book, rule[0]);
+        //
+        //     if let Some(v) = value {
+        //         println!("{}", v);
+        //     }
+        // }
     }
 
     // TODO: Remove this (only here for testing)

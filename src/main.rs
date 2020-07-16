@@ -22,6 +22,7 @@ async fn main() -> std::io::Result<()> {
             .wrap(Logger::default())
             .service(routes::home)
             .service(routes::sort_books)
+            .service(routes::test)
     })
     .bind(address)?
     .run()

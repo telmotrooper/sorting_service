@@ -1,6 +1,6 @@
 use crate::models::Book;
 
-pub fn get_from_book<'b>(book: &'b Book, attribute: &str) -> &'b Option<String> {
+pub fn get_value<'b>(book: &'b Book, attribute: &str) -> &'b Option<String> {
     return match attribute {
         "title" => &book.title,
         "subtitle" => &book.subtitle,
